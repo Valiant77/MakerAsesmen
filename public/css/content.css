@@ -1,4 +1,3 @@
-/* ===== TABLE WRAPPER ===== */
 .table-wrapper {
     width: 100%;
     overflow: auto;
@@ -11,7 +10,7 @@
     scroll-behavior: smooth;
 }
 
-/* ===== SCROLLBAR (Modern & Clean) ===== */
+/* SCROLLBAR  */
 .table-wrapper::-webkit-scrollbar {
     height: 8px;
     width: 8px;
@@ -30,13 +29,12 @@
     background-color: rgba(48, 175, 217, 0.85);
 }
 
-/* Firefox */
 .table-wrapper {
     scrollbar-width: thin;
     scrollbar-color: rgba(48, 175, 217, 0.7) transparent;
 }
 
-/* ===== TABLE BASE ===== */
+/* TABLE BASE */
 table.data-table {
     width: 100%;
     min-width: max-content; /* penting: biar kolom nyesuaiin jumlah th */
@@ -117,11 +115,13 @@ table.data-table tbody tr:hover {
 }
 
 .btn-rekap {
-    background: #e5e7eb;
+    background: #30AFD9;
+    color: white;
 }
 
-.btn-edit {
+.btn-ubah {
     background: #facc15;
+    color: white;
 }
 
 .btn-danger {
@@ -130,6 +130,6 @@ table.data-table tbody tr:hover {
 }
 
 .btn-success {
-    background: #0284c7;
-    color: #e5e7eb;
+    background: #5fb14a;
+    color: white;
 }

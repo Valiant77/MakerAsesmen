@@ -17,9 +17,10 @@ class VerifikasiController extends Controller
                 $q->where('name', 'LIKE', "%$input%");
             });
         }
+        $admin = auth()->user();
         $absenFalse = $query->get();
         $amount = $absenFalse->count();
-        return view('verifikasi', compact('absenFalse', 'amount'));
+        return view('verifikasi', compact('absenFalse', 'amount', 'admin'));
     }
     public function diterima(Request $request, $id)
     {

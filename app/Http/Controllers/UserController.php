@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\UsersExport;
 use App\Models\User;
@@ -24,18 +25,20 @@ class UserController extends Controller
                 ->orWhere('no_telp', 'LIKE', "%$input%");
         }
 
+        $admin = auth()->user();
         $users = $query->get();
         $amount = Absen::where('status', 'Menunggu')->count();
         $type = 'user';
-        return view('user', compact('users', 'amount'));
+        return view('user', compact('users', 'amount', 'admin'));
     }
 
     #the create
     public function create(Request $request)
     {
+        $admin = auth()->user();
         $role = $request->route()->getName() === 'admin.create' ? 'admin' : 'user';
         $amount = Absen::where('status', 'Menunggu')->count();
-        return view('userform', compact('role', 'amount'));
+        return view('userform', compact('role', 'amount', 'admin'));
     }
     public function store(Request $request)
     {
@@ -45,9 +48,14 @@ class UserController extends Controller
             'name' => 'nullable|string|max:255',
             'username' => 'nullable|string|max:255|unique:users,username',
             'email' => 'required|email|unique:users,email',
+            'photos' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'no_telp' => 'nullable|string|max:20',
             'password' => 'required|min:8|confirmed',
         ]);
+
+        if ($request->hasFile('photos')) {
+            $data['photos'] = $request->file('photos')->store('profile_photos', 'public');
+        }
 
         $data['password'] = bcrypt($data['password']);
         $data['pin'] = random_int(100000, 999999);
@@ -62,10 +70,11 @@ class UserController extends Controller
     #the update
     public function edit($id)
     {
+        $admin = auth()->user();
         $user = User::findOrFail($id);
         $role = $user->role;
         $amount = Absen::where('status', 'Menunggu')->count();
-        return view('userform', compact('user', 'role', 'amount'));
+        return view('userform', compact('user', 'role', 'amount', 'admin'));
     }
     public function update(Request $request, $id)
     {
@@ -75,16 +84,24 @@ class UserController extends Controller
             'name' => 'nullable|string|max:255',
             'username' => 'nullable|string|max:255|unique:users,username,' . $user->id,
             'email' => 'required|email|unique:users,email,' . $user->id,
+            'photos' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'no_telp' => 'nullable|string|max:20',
             'password' => 'nullable|min:8|confirmed',
         ]);
+        
+        if ($request->hasFile('photos')) {
+            if ($user->photos) {
+                \Storage::disk('public')->delete($user->photos);
+            }
+            $data['photos'] = $request->file('photos')->store('profile_photos', 'public');
+        }
 
         if (!empty($data['password'])) {
             $data['password'] = bcrypt($data['password']);
         } else {
             unset($data['password']);
         }
-
+    
         $user->update($data);
 
         return redirect()->route('user.index');

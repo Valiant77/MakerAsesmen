@@ -20,7 +20,7 @@ body.app-body {
 }
 
 
-/* ===== HEADER ===== */
+/* HEADER */
 .app-header {
     background: #ffffff;
     width: 100%;
@@ -50,10 +50,11 @@ body.app-body {
     height: 42px;
     border-radius: 50%;
     object-fit: cover;
+    border: 3px solid #e5e7eb;
 }
 
 
-/* ===== SIDEBAR ===== */
+/* SIDEBAR */
 .sidebar {
     width: 240px;
     background-color: #ffffff;
@@ -83,7 +84,6 @@ body.app-body {
     color: #111827;
 }
 
-/* SECTION */
 .sidebar-section {
     margin-bottom: 24px;
 }
@@ -118,7 +118,6 @@ body.app-body {
     font-size: 15px;
 }
 
-/* HOVER */
 .sidebar-item:hover {
     background-color: #f3f4f6;
 }
@@ -134,7 +133,6 @@ body.app-body {
     color: #0284c7;
 }
 
-/* BADGE */
 .badge {
     margin-left: auto;
     min-width: 18px;
@@ -162,7 +160,7 @@ body.app-body {
     background-color: #fee2e2;
 }
 
-    /* ===== TOOLBAR ===== */
+    /* TOOLBAR */
     .page-toolbar {
     display: flex;
     justify-content: space-between;
@@ -170,7 +168,7 @@ body.app-body {
     margin-bottom: 16px;
 }
 
-    /* ===== SEARCH ===== */
+    /* SEARCH */
     .search-box {
         position: relative;
         flex: 1;
@@ -199,7 +197,7 @@ body.app-body {
 }
 
 
-    /* ===== FILTER ===== */
+    /* FILTER */
     .filter-box {
         position: relative;
     }
@@ -251,7 +249,7 @@ body.app-body {
         font-size: 13px;
     }
 
-    /* ===== BUTTON BASE ===== */
+    /* BUTTON BASE */
     .action-button {
         display: flex;
         gap: 10px;
@@ -273,7 +271,8 @@ body.app-body {
 
     .btn-search,
     .btn-filter,
-    .btn-tambah {
+    .btn-tambah,
+    .btn-edit {
         background: #30AFD9;
         color: #ffffff;
         height: 35px;
@@ -281,7 +280,8 @@ body.app-body {
 
     .btn-search:hover,
     .btn-filter:hover,
-    .btn-tambah:hover {
+    .btn-tambah:hover,
+    .btn-edit:hover {
         background: #2499be;
     }
 
@@ -313,7 +313,7 @@ body.app-body {
         background-color: #0284c7;
     }
 
-    /*REKAP.BLADE*/
+/*REKAP.BLADE*/
 .rekap-toolbar {
     display: grid;
     grid-template-columns: auto 1fr auto;
@@ -389,14 +389,13 @@ body.app-body {
 
 
 
-/* ===== CONTENT CONTAINER ===== */
+/* FORM EDIT PROFILE */
 .content-container {
     background: #ffffff;
     border-radius: 16px;
     padding: 24px;
 }
 
-/* ===== FORM GRID ===== */
 .form-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -405,14 +404,12 @@ body.app-body {
     margin: 0 auto;
 }
 
-/* ===== FORM COLUMN ===== */
 .form-column {
     display: flex;
     flex-direction: column;
     gap: 18px;
 }
 
-/* ===== FORM INPUT ===== */
 .form-group label {
     display: block;
     font-size: 14px;
@@ -434,17 +431,58 @@ body.app-body {
     border-color: #0284c7;
 }
 
-/* ===== ACTION ===== */
 .form-action {
     margin-top: auto;
 }
 
-/* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
     .form-grid {
         grid-template-columns: 1fr;
     }
 }
+
+.profile-page {
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.profile-card {
+    width: 100%;
+    max-width: 420px;
+
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 28px 24px;
+
+    box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+.profile-info {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 24px;
+}
+
+.profile-info li {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+
+    border-bottom: 1px solid #f1f5f9;
+    font-size: 14px;
+}
+
+.profile-info li span:first-child {
+    color: #6b7280;
+}
+
+.profile-info li span:last-child {
+    font-weight: 600;
+    color: #111827;
+}
+
 
 
 

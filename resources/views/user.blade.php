@@ -39,9 +39,9 @@
                     <td>{{ $user->no_telp }}</td>
                     <td>
                         <a href="{{ route('rekap.show', $user->id) }}" class="btn btn-rekap">
-                            <span>Rekap</span>
+                            <i class="fa-solid fa-circle-info"></i>
                         </a>
-                        <a href="{{ route('user.edit', $user->id) }}" class="btn btn-edit">
+                        <a href="{{ route('user.edit', $user->id) }}" class="btn btn-ubah">
                             <i class="fa-solid fa-pen-to-square"></i>
                         </a>
                         <form action="{{ route('user.destroy', $user->id) }}" method="POST" style="display:inline">

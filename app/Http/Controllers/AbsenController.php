@@ -15,19 +15,20 @@ class AbsenController extends Controller
      */
     public function show($id)
     {
+        $admin = auth()->user();
         $user = User::findOrFail($id);
         $absenTrue = Absen::where('user_id', $id)->get();
         $totalHadirSeluruh = Absen::where('user_id', $id)->where('status', 'Diterima')->whereIn('kategori', ['Hadir', 'Hadir Telat', 'Telat'])->count();
         $totalTidakHadirSeluruh = Absen::where('user_id', $id)->where('status', 'Diterima')->whereIn('kategori', ['Sakit', 'Izin'])->count();
         $amount = Absen::where('status', 'Menunggu')->count();
-        return view('rekap', compact('user', 'absenTrue', 'totalHadirSeluruh', 'totalTidakHadirSeluruh', 'amount'));
+        return view('rekap', compact('user', 'absenTrue', 'totalHadirSeluruh', 'totalTidakHadirSeluruh', 'amount', 'admin'));
     }
 
     public function profil()
     {
-        $user = User::findOrFail(auth()->user()->id);
+        $admin = User::findOrFail(auth()->user()->id);
         $amount = Absen::where('status', 'Menunggu')->count();
-        return view('profil', compact('user', 'amount'));
+        return view('profil', compact('admin', 'amount'));
     }
 
     public function export($userId)

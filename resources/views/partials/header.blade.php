@@ -6,7 +6,7 @@
         </div>
 
         <div class="avatar">
-            <img src="#" alt="User Avatar">
+            <img src="{{ $admin->photos ? asset('storage/' . $admin->photos) : asset('images/default-avatar.png') }}" alt="">
         </div>
     </div>
 </header>

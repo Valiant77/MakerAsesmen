@@ -41,11 +41,15 @@
             <td>
                 <form action="{{ route('verifikasi.diterima', $af->id) }}" method="POST" style="display:inline">
                     @csrf
-                    <button class="btn btn-success" type="submit">Terima</button>
+                    <button class="btn btn-success" type="submit">
+                        <i class="fa-solid fa-check"></i>
+                    </button>
                 </form>
                 <form action="{{ route('verifikasi.ditolak', $af->id) }}" method="POST" style="display:inline">
                     @csrf
-                    <button class="btn btn-danger" type="submit">Tolak</button>
+                    <button class="btn btn-danger" type="submit">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
                 </form>
             </td>
         </tr>

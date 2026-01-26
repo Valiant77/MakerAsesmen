@@ -17,7 +17,9 @@
            class="sidebar-item {{ request()->routeIs('verifikasi.*') ? 'active' : '' }}">
             <i class="fa-solid fa-circle-check"></i>
             <span>Verifikasi</span>
-            <span class="badge">{{ $amount }}</span>
+            @if($amount > 0)
+                <span class="badge">{{ $amount }}</span>
+            @endif
         </a>
 
         <a href="#"

@@ -10,6 +10,7 @@
 <div class="page-toolbar rekap-toolbar">
     <div class="summary-card">
     <div class="rekap-user">
+        <div class="avatar"><img src="{{ $user->photos ? asset('storage/' . $user->photos) : asset('images/default-avatar.png') }}" alt=""></div>
         <h2>{{ $user->name }}</h2>
     </div>
     </div>
