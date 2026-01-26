@@ -7,5 +7,6 @@
 
         <div class="avatar">
             <img src="#" alt="User Avatar">
+        </div>
     </div>
 </header>

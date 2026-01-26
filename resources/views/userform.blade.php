@@ -1,5 +1,7 @@
 @extends('layouts.main')
-@section('title', 'Form Pengguna')
+@section('title')
+    {{ isset($user) ? 'Edit' : 'Tambah' }} {{ ucfirst($role) }}
+@endsection
 
 @section('content')
 
@@ -13,10 +15,10 @@
 
         <div class="form-grid">
             <div class="form-column">
-                <x-input label="Nama Lengkap" name="name" :value="$user->name ?? ''" />
-                <x-input label="Username" name="username" :value="$user->username ?? ''" />
-                <x-input label="Email" name="email" type="email" :value="$user->email ?? ''" />
-                <x-input label="No Telepon" name="no_telp" :value="$user->no_telp ?? ''" />
+                <x-input label="Nama Lengkap" name="name" :value="$user->name ?? ''" placeholder="Masukkan Nama Lengkap" />
+                <x-input label="Username" name="username" :value="$user->username ?? ''" placeholder="Masukkan Username" />
+                <x-input label="Email" name="email" type="email" :value="$user->email ?? ''" placeholder="Masukkan Email"/>
+                <x-input label="No Telepon" name="no_telp" :value="$user->no_telp ?? ''" placeholder="Masukkan No Telpon" />
             </div>
 
             <div class="form-column">

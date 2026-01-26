@@ -1,10 +1,12 @@
 @extends('layouts.main')
-@section('title', 'Form Pengguna')
+@section('title', 'Form Admin')
 
 @section('content')
 
 <div class="content-container">
-<h1>Profil</h1>
+<div class="avatar">
+    <img src="#" alt="User Avatar">
+</div>
 <ul>
     <li>Nama: {{ auth()->user()->name }}</li>
     <li>Username: {{ auth()->user()->username }}</li>

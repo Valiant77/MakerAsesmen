@@ -28,7 +28,7 @@ class VerifikasiController extends Controller
     }
     public function ditolak(Request $request, $id)
     {
-        Absen::where('id', $id)->delete();
+        Absen::where('id', $id)->update(['status' => 'Ditolak']);
         return redirect()->back();
     }
 }

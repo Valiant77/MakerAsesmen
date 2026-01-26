@@ -1,4 +1,4 @@
-                        @extends('layouts.main')
+@extends('layouts.main')
 @section('title') Rekap {{  $user->name }} @endsection
 
 @push('styles')
@@ -41,6 +41,7 @@
         <th>Kategori</th>
         <th>Alasan</th>
         <th>Jam</th>
+        <th>Status</th>
     </thead>
     <tbody>
         @foreach ($absenTrue as $a)
@@ -50,6 +51,7 @@
             <td>{{ $a->kategori ?? 'N/A'}}</td>
             <td>{{ $a->alasan ?? 'N/A'}}</td>
             <td>{{ $a->created_at->format('H:i:s') ?? 'N/A' }}</td>
+            <td>{{ $a->status ?? 'N/A' }}</td>
         </tr>
         @endforeach
     </tbody>

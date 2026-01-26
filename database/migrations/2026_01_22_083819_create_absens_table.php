@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('alasan')->required();
             $table->string('long')->required();
             $table->string('lat')->required();
-            $table->enum('status', ['Menunggu', 'Diterima'])->default('Menunggu');
+            $table->enum('status', ['Menunggu', 'Diterima', 'Ditolak'])->default('Menunggu');
             $table->timestamps();
         });
     }

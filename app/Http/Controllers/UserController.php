@@ -26,6 +26,7 @@ class UserController extends Controller
 
         $users = $query->get();
         $amount = Absen::where('status', 'Menunggu')->count();
+        $type = 'user';
         return view('user', compact('users', 'amount'));
     }
 
@@ -55,7 +56,7 @@ class UserController extends Controller
 
         User::create($data);
 
-        return redirect()->route($role === 'admin' ? '/profil' : 'user.index');
+        return redirect()->route($role === 'admin' ? 'profil' : 'user.index');
     }
 
     #the update
