@@ -24,13 +24,6 @@ class AbsenController extends Controller
         return view('rekap', compact('user', 'absenTrue', 'totalHadirSeluruh', 'totalTidakHadirSeluruh', 'amount', 'admin'));
     }
 
-    public function profil()
-    {
-        $admin = User::findOrFail(auth()->user()->id);
-        $amount = Absen::where('status', 'Menunggu')->count();
-        return view('profil', compact('admin', 'amount'));
-    }
-
     public function export($userId)
     {
         return Excel::download(new RekapExport($userId), 'rekap-absen-' . $userId . '.xlsx');

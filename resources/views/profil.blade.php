@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'Form Admin')
+@section('title', 'Profil Saya')
 
 @section('content')
 

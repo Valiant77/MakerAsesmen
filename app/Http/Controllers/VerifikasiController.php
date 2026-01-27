@@ -20,7 +20,8 @@ class VerifikasiController extends Controller
         $admin = auth()->user();
         $absenFalse = $query->get();
         $amount = $absenFalse->count();
-        return view('verifikasi', compact('absenFalse', 'amount', 'admin'));
+        $message = 'Halaman ini berfungsi untuk menyetujui kehadiran. Terdapat ' . $amount . ' data absensi yang menunggu verifikasi.';
+        return view('verifikasi', compact('absenFalse', 'amount', 'admin', 'message'));
     }
     public function diterima(Request $request, $id)
     {

@@ -28,8 +28,8 @@ class UserController extends Controller
         $admin = auth()->user();
         $users = $query->get();
         $amount = Absen::where('status', 'Menunggu')->count();
-        $type = 'user';
-        return view('user', compact('users', 'amount', 'admin'));
+        $message = 'Halaman ini berisi daftar seluruh pengguna yang terdaftar dalam sistem. Tercatat ada ' . $users->count() . ' pengguna.';
+        return view('user', compact('users', 'amount', 'admin', 'message'));
     }
 
     #the create
@@ -38,7 +38,8 @@ class UserController extends Controller
         $admin = auth()->user();
         $role = $request->route()->getName() === 'admin.create' ? 'admin' : 'user';
         $amount = Absen::where('status', 'Menunggu')->count();
-        return view('userform', compact('role', 'amount', 'admin'));
+        $message = 'Halaman ini digunakan untuk menambahkan pengguna baru ke dalam sistem.';
+        return view('userform', compact('role', 'amount', 'admin', 'message'));
     }
     public function store(Request $request)
     {
@@ -74,7 +75,8 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $role = $user->role;
         $amount = Absen::where('status', 'Menunggu')->count();
-        return view('userform', compact('user', 'role', 'amount', 'admin'));
+        $message = 'Halaman ini digunakan untuk mengedit informasi pengguna.';
+        return view('userform', compact('user', 'role', 'amount', 'admin', 'message'));
     }
     public function update(Request $request, $id)
     {
@@ -112,6 +114,14 @@ class UserController extends Controller
     {
         User::findOrFail($id)->delete();
         return redirect()->route('user.index');
+    }
+
+    public function profil()
+    {
+        $admin = User::findOrFail(auth()->user()->id);
+        $amount = Absen::where('status', 'Menunggu')->count();
+        $message = 'Halaman ini berisi informasi profil Anda.';
+        return view('profil', compact('admin', 'amount', 'message'));
     }
 
     public function export()

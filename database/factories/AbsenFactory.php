@@ -23,7 +23,7 @@ class AbsenFactory extends Factory
             'alasan' => $this->faker->sentence(),
             'long' => $this->faker->longitude(),
             'lat' => $this->faker->latitude(),
-            'status' => $this->faker->randomElement(['Diterima', 'Diterima', 'Diterima']),
+            'status' => $this->faker->randomElement(['Diterima', 'Diterima', 'Diterima', 'Menunggu']),
         ];
     }
 }

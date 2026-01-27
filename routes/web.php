@@ -6,7 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AbsenController;
 use App\Http\Controllers\VerifikasiController;
 
-Route::get('/profil', [AbsenController::class, 'profil'])->name('profil');
+Route::get('/profil', [UserController::class, 'profil'])->name('profil');
 
 Route::get('/login', function () { return view('login'); });
 Route::post('/login', [AuthController::class, 'login'])->name('login');
