@@ -37,7 +37,7 @@
             <td>{{ $af->created_at->format('H:i:s') ?? 'N/A'}}</td>
             <td>{{ $af->kategori ?? 'N/A'}}</td>
             <td>
-                <button class="btn btn-detail" onclick="openModal({{ $af->id }}, '{{ $af->alasan }}', '{{ $af->user->photos }}', '{{ $af->user->name }}')">
+                <button class="btn btn-detail" onclick="openModal({{ $af->id }}, '{{ $af->alasan }}', '{{ $af->photo }}', '{{ $af->user->name }}')">
                     <i class="fa-solid fa-arrow-up-right-from-square"></i>
                 </button>
             </td>
@@ -72,7 +72,7 @@
         </div>
         <div class="modal-body">
             <div class="modal-photo">
-                <img id="userPhoto" src="" alt="User Photo" style="max-width: 300px; border-radius: 8px;">
+                <img id="buktiPhoto" src="" alt="User Photo" style="max-width: 80%; border-radius: 8px;">
             </div>
             <div class="modal-alasan">
                 <h4>Alasan:</h4>
@@ -82,13 +82,21 @@
     </div>
 </div>
 @endsection
+
 @push('scripts')
 <script>
     // Popup Modal Functions
     function openModal(id, alasan, photos, name) {
         document.getElementById('userName').innerText = 'Detail - ' + name;
         document.getElementById('alasanText').innerText = alasan;
-        document.getElementById('userPhoto').src = '{{ asset("storage/") }}' + photos;
+        
+        // Set image src with proper URL construction
+        if (photos) {
+            document.getElementById('buktiPhoto').src = '{{ asset("storage/absens") }}/' + photos;
+        } else {
+            document.getElementById('buktiPhoto').src = '{{ asset("storage/absens/default.png") }}';
+        }
+        
         document.getElementById('detailModal').style.display = 'block';
     }
 

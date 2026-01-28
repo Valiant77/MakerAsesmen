@@ -15,13 +15,12 @@ class MonitorController extends Controller
         $message = 'Halaman ini berisi pengawasan aktivitas pengguna secara real-time.';
         $users = User::where('role', 'user')->get();
         
-        // Get the latest absen for each user
-        $absens = Absen::whereIn('user_id', $users->pluck('id'))
-            // ->groupBy('user_id')
-            // ->selectRaw('*, MAX(created_at) as latest_created')
-            // ->orderBy('latest_created', 'desc')
-            ->get();
-        
+        $absens = Absen::where('status', 'Diterima')
+        ->whereIn('kategori', ['Hadir', 'Telat', 'Hadir Telat'])->whereIn('id', function ($query) {
+            $query->selectRaw('MAX(id)')->from('absens')->where('status', 'Diterima')->whereIn('kategori', ['Hadir', 'Telat', 'Hadir Telat'])->groupBy('user_id');
+    })->whereIn('user_id', $users->pluck('id'))->orderBy('created_at', 'desc')->get();
+
+
         return view('monitoring', compact('admin', 'amount', 'message', 'users', 'absens'));
     }
 }

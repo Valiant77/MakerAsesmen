@@ -16,9 +16,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Absen::factory(100)->create();
-
-        //User::factory(35)->create();
+        // User::factory(36)->create();
         // User::factory()->create([
         //     'name' => 'Dimas Muliarasis',
         //     'username' => 'dimaskyy',
@@ -28,5 +26,59 @@ class DatabaseSeeder extends Seeder
         //     'pin' => '123456',
         //     'role' => 'admin',
         // ]);
+        Absen::create([
+            'user_id' => 1,
+            'kategori' => 'Hadir',
+            'alasan' => '-',
+            'photo' => 'default.png',
+            'long' => '107.659070',
+            'lat' => '-6.967710',
+            'status' => 'Menunggu',
+        ]);
+        Absen::create([
+            'user_id' => 2,
+            'kategori' => 'Telat',
+            'alasan' => '-',
+            'photo' => 'favicon.png',
+            'long' => '107.659080',
+            'lat' => '-6.967700',
+            'status' => 'Menunggu',
+        ]);
+        Absen::create([
+            'user_id' => 3,
+            'kategori' => 'Hadir',
+            'alasan' => '-',
+            'photo' => 'falin4.jpg',
+            'long' => '107.659075',
+            'lat' => '-6.967710',
+            'status' => 'Menunggu',
+        ]);
+        Absen::create([
+            'user_id' => 4,
+            'kategori' => 'Hadir Telat',
+            'alasan' => '-',
+            'photo' => 'uhh.jpg',
+            'long' => '107.659080',
+            'lat' => '-6.967720',
+            'status' => 'Menunggu',
+        ]);
+        Absen::create([
+            'user_id' => 2,
+            'kategori' => 'Sakit',
+            'alasan' => 'Demam naik turun ahay',
+            'photo' => 'glaze.png',
+            'long' => '',
+            'lat' => '',
+            'status' => 'Menunggu',
+        ]);
+        Absen::create([
+            'user_id' => 1,
+            'kategori' => 'Izin',
+            'alasan' => '-',
+            'photo' => 'sigma.jpg',
+            'long' => '107.659080',
+            'lat' => '-6.967700',
+            'status' => 'Menunggu',
+        ]);
     }
 }

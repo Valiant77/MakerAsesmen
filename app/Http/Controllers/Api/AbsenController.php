@@ -15,11 +15,12 @@ class AbsenController extends Controller
             'kategori' => 'required|string',
             'status' => 'required|string',
             'tanggal' => 'required|date',
-            'alasan' => 'nullable|string',
+            'alasan' => 'required|string',
+            'photos' => 'required|image|mimes:jpeg,png,jpg|max:10000',
         ]);
 
         if ($request->HasFile('photos')) {
-            $data['photos'] = $request->file('photos')->store('photos', 'public');
+            $data['photos'] = $request->file('photos')->store('absens', 'public');
         }
 
         $absen = Absen::create($data);

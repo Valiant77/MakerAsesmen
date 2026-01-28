@@ -1,4 +1,5 @@
 @extends('layouts.main')
+@section('title', 'Monitoring Pengguna')
 
 @section('content')
 <div class="container">
@@ -19,7 +20,7 @@
     // Add OpenStreetMap tiles
     L.tileLayer('https://{s}.tile.openstreetmap.de/{z}/{x}/{y}.png', {
         attribution: '&copy; OpenStreetMap contributors',
-        maxZoom: 20
+        maxZoom: 25
     }).addTo(map);
     
     // Example marker

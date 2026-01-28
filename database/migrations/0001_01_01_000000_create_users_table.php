@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('no_telp')->nullable();
             $table->string('password');
-            $table->string('pin')->unique();
+            $table->string('pin');
             $table->enum('role', ['admin', 'user'])->default('admin');
             $table->rememberToken();
             $table->timestamps();

@@ -16,8 +16,8 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->enum('kategori', ['Hadir', 'Hadir Telat', 'Telat', 'Sakit', 'Izin'])->required();
             $table->text('alasan')->required();
-            $table->string('long')->required();
             $table->string('lat')->required();
+            $table->string('long')->required();
             $table->enum('status', ['Menunggu', 'Diterima', 'Ditolak'])->default('Menunggu');
             $table->timestamps();
         });

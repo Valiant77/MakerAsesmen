@@ -52,6 +52,7 @@ class UserController extends Controller
             'photos' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'no_telp' => 'nullable|string|max:20',
             'password' => 'required|min:8|confirmed',
+            'pin' => 'required|digits:6',
         ]);
 
         if ($request->hasFile('photos')) {
@@ -59,7 +60,6 @@ class UserController extends Controller
         }
 
         $data['password'] = bcrypt($data['password']);
-        $data['pin'] = random_int(100000, 999999);
         $data['role'] = $role;
         $data['remember_token'] = \Str::random(10);
 
@@ -88,7 +88,9 @@ class UserController extends Controller
             'email' => 'required|email|unique:users,email,' . $user->id,
             'photos' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'no_telp' => 'nullable|string|max:20',
-            'password' => 'nullable|min:8|confirmed',
+            'old_password' => 'nullable|string',
+            'password' => 'nullable|min:8',
+            'pin' => 'nullable|digits:6',
         ]);
         
         if ($request->hasFile('photos')) {
@@ -98,11 +100,19 @@ class UserController extends Controller
             $data['photos'] = $request->file('photos')->store('profile_photos', 'public');
         }
 
+        if (!empty($data['old_password'])) {
+            if (!\Hash::check($data['old_password'], $user->password)) {
+                return redirect()->back()->withErrors(['old_password' => 'Password lama tidak sesuai']);
+            }
+        }
+
         if (!empty($data['password'])) {
             $data['password'] = bcrypt($data['password']);
         } else {
             unset($data['password']);
         }
+        
+        unset($data['old_password']);
     
         $user->update($data);
 
