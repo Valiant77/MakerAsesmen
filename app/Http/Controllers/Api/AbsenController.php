@@ -36,3 +36,4 @@ class AbsenController extends Controller
         return response()->json(['message' => 'Absensi berhasil disimpan', 'data' => $absen], 201);
     }
 }
+///cihuy
