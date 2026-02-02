@@ -52,7 +52,7 @@ class UserController extends Controller
             'photos' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'no_telp' => 'nullable|string|max:20',
             'password' => 'required|min:8|confirmed',
-            'pin' => 'nullable|digits:6',
+            'pin' => 'nullable |digits:6',
         ]);
 
         if ($request->hasFile('photos')) {
