@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Users Table</title>
+</head>
+<body>
+  <h1>Pengguna</h1>
+  <button>+ Tambah Pengguna Baru</button>
+  <table border="1">
+    <tr>
+      <th>#</th>
+      <th>Nama</th>
+      <th>Username</th>
+      <th>Email</th>
+      <th>No Telepon</th>
+      <th>Aksi</th>
+    </tr>
+
+    <% users.forEach(user => { %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.name %></td>
+        <td><%= user.username %></td>
+        <td><%= user.email %></td>
+        <td><%= user.no_telp %></td>
+        <td>
+            <button>Detail</button>
+            <button>Edit</button>
+            <button>Hapus</button>
+        </td>
+      </tr>
+    <% }) %>
+  </table>
+</body>
+</html>
