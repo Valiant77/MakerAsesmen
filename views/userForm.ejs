@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= isEdit ? "Edit Pengguna" : "Tambah Pengguna" %></title>
+</head>
+<body>
+  <h1><%= isEdit ? "Edit Pengguna" : "Tambah Pengguna" %></h1>
+  <form action="<%= isEdit ? '/users/edit/' + user.id : '/users/create' %>" method="POST">
+    <label>Nama: </label>
+    <input type="text" name="name" value= "<%= user ? user.name : '' %>" required><br>
+
+    <label>Username: </label>
+    <input type="text" name="username" value= "<%= user ? user.username : '' %>" required><br>
+
+    <label>Email: </label>
+    <input type="email" name="email" value= "<%= user ? user.email : '' %>" required><br>
+
+    <label>No Telepon: </label>
+    <input type="text" name="no_telp" value= "<%= user ? user.no_telp : '' %>" required><br>
+
+    <label>Password: </label>
+    <input type="password" name="password" required>
+
+    <label>PIN: </label>
+    <input type="text" name="pin" value= "<%= user ? user.pin : '' %>" required>
+
+    <button type="submit"><%= isEdit ? "Update" : "Tambah" %></button>
+  </form>
+  <a href="/users">Kembali</a>
+</body>
+</html>

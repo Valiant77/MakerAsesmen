@@ -5,7 +5,7 @@
 </head>
 <body>
   <h1>Pengguna</h1>
-  <button>+ Tambah Pengguna Baru</button>
+  <a href="/users/create"><button>+ Tambah Pengguna Baru</button></a>
   <table border="1">
     <tr>
       <th>#</th>
@@ -25,11 +25,22 @@
         <td><%= user.no_telp %></td>
         <td>
             <button>Detail</button>
-            <button>Edit</button>
-            <button>Hapus</button>
+            <a href="/users/edit/<%= user.id %>"><button>Edit</button></a>
+            <a href="/users/delete/<%= user.id %>" onclick="return confirm('Delete this user???')"><button>Hapus</button></a>
         </td>
       </tr>
     <% }) %>
   </table>
+
+  <script>
+  document.querySelectorAll('.delete-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const id = this.dataset.id;
+      if (confirm('Delete this user???')) {
+        window.location.href = `/users/delete/${id}`;
+      }
+    });
+  });
+</script>
 </body>
 </html>
