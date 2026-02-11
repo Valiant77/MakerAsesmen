@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const userController = require("../controllers/userController");
 
+//Form related routes
 router.get("/create", userController.showCreateForm); //C
 router.post("/create", userController.createUser); //C
 router.get("/", userController.listUsers); //R

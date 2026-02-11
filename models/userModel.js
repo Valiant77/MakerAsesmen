@@ -1,6 +1,13 @@
 const db = require("../config/db");
 const bcrypt = require("bcrypt")
 
+exports.getUserByUsername = async (username) => {
+    const[rows] = await db.query(
+        "SELECT * FROM users WHERE username = ?", [username]
+    );
+    return rows[0];
+}
+
 //CRUD
 exports.createUser = async(userData) => { //C(reate)
     const {name, username, email, no_telp, password, pin, role} = userData;
